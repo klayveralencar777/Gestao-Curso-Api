@@ -21,12 +21,15 @@ public class InstrutorService {
         return instrutorRepository.findById(id).
                 orElseThrow(() -> new EntityNotFoundException("Instrutor não encontrado com o ID: " + id));
     }
+
+
     public Instrutor saveInstrutor(Instrutor instrutor) {
         if(instrutor.getCursos() != null) {
             instrutor.getCursos().forEach(curso -> curso.setInstrutor(instrutor));
         }
         return instrutorRepository.save(instrutor);
     }
+
     public void deleteInstrutor(Long id) {
         Instrutor instrutor = instrutorRepository.findById(id).
                 orElseThrow(() -> new EntityNotFoundException("Instrutor não encontrado com o ID: " + id));
@@ -38,11 +41,20 @@ public class InstrutorService {
                 instrutor -> {
                     instrutor.setNome(novoInstrutor.getNome());
                     instrutor.setEmail(novoInstrutor.getEmail());
+                    if(novoInstrutor.getCursos() != null) {
+                        instrutor.getCursos().clear();
+                        novoInstrutor.getCursos().forEach(curso -> {
+                            curso.setInstrutor(instrutor);
+                            instrutor.getCursos().add(curso);
+                        });
+                    }
+
                     return instrutorRepository.save(instrutor);
                 }).orElseThrow(() -> new EntityNotFoundException(("Instrutor não encontrado pelo ID: " + id)));
 
     }
 
+        
 
 
 

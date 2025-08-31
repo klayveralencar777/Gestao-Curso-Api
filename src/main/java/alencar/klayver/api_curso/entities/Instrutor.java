@@ -1,14 +1,24 @@
 package alencar.klayver.api_curso.entities;
 
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.*;
-import lombok.*;
-
-import java.util.List;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tb_instrutor")
@@ -27,7 +37,7 @@ public class Instrutor {
     @NotBlank(message = "Email é um campo obrigatório")
     private String email;
 
-    @OneToMany(mappedBy = "instrutor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "instrutor", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Curso> cursos;
 
