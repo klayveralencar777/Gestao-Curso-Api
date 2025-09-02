@@ -4,15 +4,16 @@ API RESTful para gestão de cursos e instrutores, construída com Java e Spring 
 Tecnologias utilizadas: Java 17+, Spring Boot, Spring Data JPA, Hibernate, banco de dados PostgreSQL, Maven para gerenciamento de dependências e padrão MVC para organização do código.  
 
 
-*ARQUITETURA*
 
-rc/main/java/alencar/klayver/api_curso/
-│
-├── controllers/    # Endpoints REST (InstrutorController)
-├── entities/       # Entidades JPA (Instrutor)
-├── services/       # Regras de negócio (InstrutorService)
-├── repositories/   # Acesso ao banco de dados
-└── exceptions/     # Tratamento de erros
+### 📂 Estrutura do Projeto
+
+| Diretório              | Descrição                                                                 |
+|-------------------------|---------------------------------------------------------------------------|
+| `controllers/`          | Contém os **endpoints REST**, responsáveis por expor a API (ex: `InstrutorController`). |
+| `entities/`             | Define as **entidades JPA** que representam as tabelas do banco de dados (ex: `Instrutor`). |
+| `services/`             | Implementa as **regras de negócio** e centraliza a lógica da aplicação (ex: `InstrutorService`). |
+| `repositories/`         | Responsável pelo **acesso ao banco de dados**, utilizando Spring Data JPA. |
+| `exceptions/`           | Faz o **tratamento de erros** e define exceções personalizadas. |
 
 ### 📖 Relacionamento entre Instrutor e Curso
 
