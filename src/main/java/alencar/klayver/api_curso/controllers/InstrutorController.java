@@ -26,32 +26,32 @@ public class InstrutorController {
 
     @GetMapping
     public ResponseEntity<List<Instrutor>> getAll() {
-        List<Instrutor> instrutors = instrutorService.findAllInstrutor();
+        List<Instrutor> instrutors = instrutorService.findAll();
         return ResponseEntity.status(200).body(instrutors);
 
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Instrutor> getById(@PathVariable Long id ) {
-        Instrutor findInstrutor = instrutorService.findByIdInstrutor(id);
+        Instrutor findInstrutor = instrutorService.findById(id);
         return ResponseEntity.status(200).body(findInstrutor);
     }
     @PostMapping()
     public ResponseEntity<Instrutor> postInstrutor(@RequestBody @Valid Instrutor instrutor) {
-        Instrutor instrutorCreated = instrutorService.saveInstrutor(instrutor);
+        Instrutor instrutorCreated = instrutorService.save(instrutor);
         return ResponseEntity.status(201).body(instrutorCreated);
 
     }
     @PutMapping("/{id}")
     public ResponseEntity<Instrutor> putInstrutor(@PathVariable Long id, @RequestBody @Valid  Instrutor instrutor) {
-        Instrutor updateInstrutor = instrutorService.updateInstrutor(id, instrutor);
+        Instrutor updateInstrutor = instrutorService.update(id, instrutor);
         return ResponseEntity.status(200).body(updateInstrutor);
 
     }
 
     @DeleteMapping("/{id}") 
     public ResponseEntity<Void> deleteInstrutor(@PathVariable Long id) {
-        instrutorService.deleteInstrutor(id);
+        instrutorService.delete(id);
         return ResponseEntity.status(204).build();
     }
     

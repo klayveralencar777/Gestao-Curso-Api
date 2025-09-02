@@ -1,39 +1,41 @@
 package alencar.klayver.api_curso.services;
 
 
-import alencar.klayver.api_curso.entities.Curso;
-import alencar.klayver.api_curso.exceptions.EntityNotFoundException;
-import alencar.klayver.api_curso.repository.CursoRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import alencar.klayver.api_curso.entities.Curso;
+import alencar.klayver.api_curso.exceptions.EntityNotFoundException;
+import alencar.klayver.api_curso.repository.CursoRepository;
 
 @Service
 public class CursoService {
     @Autowired
     CursoRepository cursoRepository;
 
-    public List<Curso> findAllCurso() {
+    public List<Curso> findAll() {
         return cursoRepository.findAll();
 
     }
 
-    public Curso findByIdCurso(Long id) {
+    public Curso findById(Long id) {
         return cursoRepository.findById(id).
                 orElseThrow(() -> new EntityNotFoundException("Curso não encontrado com o ID: " + id));
     }
 
-    public Curso saveCurso(Curso curso) {
+    public Curso save(Curso curso) {
         return cursoRepository.save(curso);
     }
 
-   public void deleteCurso(Long id) {
+   public void delete(Long id) {
         Curso cursoDeletado = cursoRepository.findById(id).
                 orElseThrow(() -> new EntityNotFoundException("Curso não encontrado para remover com o ID: " + id));
+                cursoRepository.delete(cursoDeletado);
    }
 
-  public Curso updateCurso(Long id, Curso curso) {
+  public Curso update(Long id, Curso curso) {
         return cursoRepository.findById(id).map(
                 c -> {
                     c.setTitulo(curso.getTitulo());
@@ -43,6 +45,7 @@ public class CursoService {
                 }).orElseThrow(() -> new EntityNotFoundException("Curso não encontrado com o ID: " + id));
 
   }
+  
 
 }
 

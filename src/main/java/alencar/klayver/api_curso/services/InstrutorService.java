@@ -14,29 +14,29 @@ public class InstrutorService {
     @Autowired
     private InstrutorRepository instrutorRepository;
 
-    public List<Instrutor> findAllInstrutor() {
+    public List<Instrutor> findAll() {
         return instrutorRepository.findAll();
     }
-    public Instrutor findByIdInstrutor(Long id) {
+    public Instrutor findById(Long id) {
         return instrutorRepository.findById(id).
                 orElseThrow(() -> new EntityNotFoundException("Instrutor não encontrado com o ID: " + id));
     }
 
 
-    public Instrutor saveInstrutor(Instrutor instrutor) {
+    public Instrutor save(Instrutor instrutor) {
         if(instrutor.getCursos() != null) {
-            instrutor.getCursos().forEach(curso -> curso.setInstrutor(instrutor));
+            instrutor.getCursos().forEach(c -> c.setInstrutor(instrutor));
         }
         return instrutorRepository.save(instrutor);
     }
 
-    public void deleteInstrutor(Long id) {
+    public void delete(Long id) {
         Instrutor instrutor = instrutorRepository.findById(id).
                 orElseThrow(() -> new EntityNotFoundException("Instrutor não encontrado com o ID: " + id));
         instrutorRepository.delete(instrutor);
     }
 
-    public Instrutor updateInstrutor(Long id, Instrutor novoInstrutor) {
+    public Instrutor update(Long id, Instrutor novoInstrutor) {
         return instrutorRepository.findById(id).map(
                 instrutor -> {
                     instrutor.setNome(novoInstrutor.getNome());
@@ -53,19 +53,5 @@ public class InstrutorService {
                 }).orElseThrow(() -> new EntityNotFoundException(("Instrutor não encontrado pelo ID: " + id)));
 
     }
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
