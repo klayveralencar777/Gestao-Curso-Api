@@ -3,19 +3,6 @@ API RESTful para gestão de cursos e instrutores, construída com Java e Spring 
 
 Tecnologias utilizadas: Java 17+, Spring Boot, Spring Data JPA, Hibernate, banco de dados PostgreSQL, Maven para gerenciamento de dependências e padrão MVC para organização do código.  
 
-Instalação e execução: clone o repositório com `git clone https://github.com/klayveralencar777/Gestao-Curso-Api.git` e entre na pasta do projeto com `cd Gestao-Curso-Api`. Para rodar, execute `./mvnw spring-boot:run` (Linux/Mac) ou `mvnw spring-boot:run` (Windows). A API estará rodando em `http://localhost:8080`.  
-
-Banco de dados: por padrão pode ser configurado em `src/main/resources/application.properties`. Exemplo para o PostgreSQL:
-
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-spring.datasource.driver-class-name=org.postgresql.Driver
-spring.datasource.username=postgres
-spring.datasource.password=senha
-spring.datasource.url=jdbc:postgresql://localhost:5432/banco_nome
-spring.jpa.generate-ddl=true
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-
 
 *ARQUITETURA*
 
