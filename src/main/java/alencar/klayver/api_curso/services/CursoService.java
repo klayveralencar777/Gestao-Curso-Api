@@ -30,9 +30,8 @@ public class CursoService {
     }
 
    public void delete(Long id) {
-        Curso cursoDeletado = cursoRepository.findById(id).
-                orElseThrow(() -> new EntityNotFoundException("Curso não encontrado para remover com o ID: " + id));
-                cursoRepository.delete(cursoDeletado);
+        Curso cursoDeletado = findById(id);
+        cursoRepository.delete(cursoDeletado);
    }
 
   public Curso update(Long id, Curso curso) {
