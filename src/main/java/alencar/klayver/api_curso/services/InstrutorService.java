@@ -31,8 +31,7 @@ public class InstrutorService {
     }
 
     public void delete(Long id) {
-        Instrutor instrutor = instrutorRepository.findById(id).
-                orElseThrow(() -> new EntityNotFoundException("Instrutor não encontrado com o ID: " + id));
+        Instrutor instrutor = findById(id);     
         instrutorRepository.delete(instrutor);
     }
 
